@@ -22,7 +22,7 @@ r = rand(1, nTraj) * M;
 
 ri = r < a;
 Wind(ri) = r(ri);
-
+x=4;
 rin = ~ri;
 % -(c+1/2a) + 2(x) - 1/(2a)*(x)^2 = 0
 A = -1 / (2 * a);
