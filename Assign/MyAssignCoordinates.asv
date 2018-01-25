@@ -1,0 +1,82 @@
+function MyAssignCoordinates( num, w, l ,vth,deltaT)
+%MyAssignCoordinates
+vertarray=rand(num,1)*w;
+horarray=rand(num,1)*l;
+vertarrayp=vertarray;
+horarrayp=horarray;
+
+%xlim(l);
+%ylim(w);
+%establish velocity and angles
+angles=rand(num)*2*pi;
+vx=ones(num,1);
+vy=ones(num,1);
+
+
+
+
+
+
+for i=1:num
+    vx(i)=cos(angles(i))*vth;
+    vy(i)=sin(angles(i))*vth;
+end
+
+for i=1:1000
+   horarrayp=horarray;
+   vertarrayp=vertarray;
+    
+    
+    
+  
+    horarray(horarray>=l)=horarray(horarray>=l) - l;
+    
+    horarray(horarray<=0)=horarray(horarray<=0)+l;
+   % vy((vy*deltaT+vertarray)>=w)=-vy((vy*deltaT+vertarray)>=w)
+    %vy((vy*deltaT+vertarray)<=0)=-vy((vy*deltaT+vertarray)>=0)
+   
+    IT=[vertarray>=w];
+    vy(IT)=-vy(IT);
+    
+    IT=[vertarray<=0];
+    vy(IT)=-vy(IT);
+    
+    
+    
+    
+    %for i=1:num
+     %  if horarray(i)<=0 
+      %     horarray(i)=l;
+      % elseif horarray(i)>=l
+       %    horarray(i)=0;
+       %end
+    %end  
+    %for i=1:num
+     %   if vertarray(i)<=0
+     %       vy(i)=-vy(i);
+     %   elseif vertarray(i)>=w
+     %       vy(i)=-vy(i);
+     %  end
+   %end      
+    
+   
+   %if (vertarray<=0)
+   
+    horarray=horarray+vx.*deltaT;
+    vertarray=vertarray+vy.*deltaT;
+    plot(horarray,vertarray,'.')
+    
+    hold on 
+    pause(.01)
+end
+sumx=sum(vx);
+sumy=sum(vy);
+avgx=sumx/num;
+avgy=sumy/num;
+vrms=sqrt(avgz
+
+
+
+
+
+end
