@@ -24,5 +24,5 @@ VMinDim=0;
 HMinDim=0;
 HMaxDim=100*10^-9;
 %4
-deltaT=7.562*10^-15;
+deltaT=7.562*10^-16;
 MyAssignCoordinates(kb,me,10,VMaxDim,HMaxDim,vth(300),deltaT)
