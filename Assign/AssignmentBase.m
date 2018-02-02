@@ -12,17 +12,21 @@ kb=1.38064*10^-23;
 
 vth=@(t) sqrt(kb*t/me);
 vt=vth(300);
+fprintf('The expected thermal velocity is %6.4f m/s \n',vth(300))
+fprintf('The expected mean time between collisions is 0.200e-12\n')
 
 %2
 %mean time collisions is 0.2 ps
 tmn=0.2*10^-12;
 %mean free path
-mnfreepath=tmn*vth(300)
+mnfreepath=tmn*vth(300);
+fprintf('The expected mean free path is %6.4f e-08 meters\n',mnfreepath*10^8)
+fprintf('-----------------------------------------------------------\n')
 %3
 VMaxDim=200*10^-9;
 VMinDim=0;
 HMinDim=0;
 HMaxDim=100*10^-9;
 %4
-deltaT=7.562*10^-16;
+deltaT=7.562*10^-15;
 MyAssignCoordinates(kb,me,10,VMaxDim,HMaxDim,vth(300),deltaT)

@@ -1,9 +1,7 @@
-function MyAssignCoordinates( num, w, l ,vth,deltaT)
+function MyAssignCoordinates( kb,m,num, w, l ,vth,deltaT)
 %MyAssignCoordinates
 vertarray=rand(num,1)*w;
 horarray=rand(num,1)*l;
-vertarrayp=vertarray;
-horarrayp=horarray;
 
 %xlim(l);
 %ylim(w);
@@ -11,57 +9,30 @@ horarrayp=horarray;
 angles=rand(num)*2*pi;
 vx=ones(num,1);
 vy=ones(num,1);
-
-
-
-
-
+vrms=ones(num,1);
 
 for i=1:num
     vx(i)=cos(angles(i))*vth;
     vy(i)=sin(angles(i))*vth;
 end
 
-for i=1:1000
-   horarrayp=horarray;
-   vertarrayp=vertarray;
+sumtemp=0;
+for i=1:400
     
-    
-    
-  
+    %horizontal periodic boundary generator
     horarray(horarray>=l)=horarray(horarray>=l) - l;
+    horarray(horarray<=0)=horarray(horarray<=0)+l; 
     
-    horarray(horarray<=0)=horarray(horarray<=0)+l;
-   % vy((vy*deltaT+vertarray)>=w)=-vy((vy*deltaT+vertarray)>=w)
-    %vy((vy*deltaT+vertarray)<=0)=-vy((vy*deltaT+vertarray)>=0)
-   
+    %vertical reflection boundary generator
     IT=[vertarray>=w];
     vy(IT)=-vy(IT);
-    
     IT=[vertarray<=0];
     vy(IT)=-vy(IT);
+    %Temperature Checker
+    vrms=sqrt((sum(abs(vx))/num)^2+(sum(abs(vy))/num)^2);
+    Temp=m*mean(vrms.^2)/kb;
+    %end temp plot attempt
     
-    
-    
-    
-    %for i=1:num
-     %  if horarray(i)<=0 
-      %     horarray(i)=l;
-      % elseif horarray(i)>=l
-       %    horarray(i)=0;
-       %end
-    %end  
-    %for i=1:num
-     %   if vertarray(i)<=0
-     %       vy(i)=-vy(i);
-     %   elseif vertarray(i)>=w
-     %       vy(i)=-vy(i);
-     %  end
-   %end      
-    
-   
-   %if (vertarray<=0)
-   
     horarray=horarray+vx.*deltaT;
     vertarray=vertarray+vy.*deltaT;
     plot(horarray,vertarray,'.')
@@ -69,11 +40,7 @@ for i=1:1000
     hold on 
     pause(.01)
 end
-sumx=sum(vx);
-sumy=sum(vy);
-avgx=sumx/num;
-avgy=sumy/num;
-vrms=sqrt(avgz
+
 
 
 
